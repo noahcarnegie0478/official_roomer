@@ -1,10 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Stage, Layer, Text, Rect, Circle } from "react-konva";
 import GridLayer from "../Componenent/TwoDimension/GridLayer";
+import DrawRoom from "../Componenent/TwoDimension/DrawRoom";
 
-function TwoDimensionMainWindow() {
+function TwoDimensionMainWindow({ allowToDraw, setAllowToDraw }) {
   const [scale, setScale] = useState(1);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isClose, setIsClose] = useState(false);
   const stageRef = useRef();
   const handleWheel = e => {
     e.evt.preventDefault();
@@ -24,25 +26,40 @@ function TwoDimensionMainWindow() {
     setScale(newScale);
     setPosition(newPos);
   };
+  // useEffect(() => {
+  //   allowToDraw ? setIsClose(false) : setIsClose(true);
+  // }, [allowToDraw]);
   return (
-    <Stage
-      width={window.innerWidth}
-      height={window.innerHeight}
-      scaleX={scale}
-      scaleY={scale}
-      x={position.x}
-      y={position.y}
-      onWheel={handleWheel}
-      ref={stageRef}
-      draggable={true}
-    >
-      <GridLayer
-        stageRef={stageRef}
-        scale={scale}
-        setScale={setScale}
-        position={position}
-      />
-    </Stage>
+    <div className="two-dimention">
+      <Stage
+        width={window.innerWidth}
+        height={window.innerHeight}
+        scaleX={scale}
+        scaleY={scale}
+        x={position.x}
+        y={position.y}
+        onWheel={handleWheel}
+        ref={stageRef}
+        draggable={!allowToDraw}
+      >
+        <GridLayer
+          stageRef={stageRef}
+          scale={scale}
+          setScale={setScale}
+          position={position}
+        />
+        {allowToDraw ? (
+          <DrawRoom
+            isClose={isClose}
+            setIsClose={setIsClose}
+            stage={stageRef}
+            setAllowToDraw={setAllowToDraw}
+          />
+        ) : (
+          ""
+        )}
+      </Stage>
+    </div>
   );
 }
 
