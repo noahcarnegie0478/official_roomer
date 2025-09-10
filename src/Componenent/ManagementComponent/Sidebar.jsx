@@ -1,22 +1,19 @@
 import React from "react";
+import { BsHouseAdd } from "react-icons/bs";
+import { PiDeskFill } from "react-icons/pi";
 
 function Sidebar({ setAllowToDraw }) {
   return (
-    <div className="h-screen w-20 bg-white absolute z-1000">
-      {/*
-    co 1 cai list hien thi category 
-    */}
-      <div className="category w-4/5 h-20 p-2 bg-white rounded-sm border ">
-        <p onClick={() => setAllowToDraw(true)}>draw room</p>
+    <div className="bg-white fixed z-1000 left-2 top-1   shadow-md rounded-lg flex flex-col items-center justify-center gap-3 p-2">
+      <div className="to-draw h-10 w-10 inset-shadow-sm rounded-lg  flex items-center justify-center ">
+        <BsHouseAdd
+          className=" w-7 h-7 "
+          onClick={() => setAllowToDraw(true)}
+        />
       </div>
-      {/*
-    an vao category thi cai trang se expand ra 1 vung chua, 
-
-    */}
-      {/*
-    trong vung chua do chua cac cai san pham lien quan den category
-
-    */}
+      <div className="furniture h-10 w-10 inset-shadow-sm rounded-lg flex items-center justify-center  ">
+        <PiDeskFill className=" w-7 h-7 " />
+      </div>
     </div>
   );
 }

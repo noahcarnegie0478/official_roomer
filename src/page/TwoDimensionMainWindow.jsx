@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Stage, Layer, Text, Rect, Circle } from "react-konva";
 import GridLayer from "../Componenent/TwoDimension/GridLayer";
 import DrawRoom from "../Componenent/TwoDimension/DrawRoom";
