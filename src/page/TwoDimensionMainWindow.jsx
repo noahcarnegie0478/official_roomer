@@ -6,7 +6,6 @@ import DrawRoom from "../Componenent/TwoDimension/DrawRoom";
 function TwoDimensionMainWindow({ allowToDraw, setAllowToDraw }) {
   const [scale, setScale] = useState(1);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isClose, setIsClose] = useState(false);
   const stageRef = useRef();
   const handleWheel = e => {
     e.evt.preventDefault();
@@ -26,9 +25,7 @@ function TwoDimensionMainWindow({ allowToDraw, setAllowToDraw }) {
     setScale(newScale);
     setPosition(newPos);
   };
-  // useEffect(() => {
-  //   allowToDraw ? setIsClose(false) : setIsClose(true);
-  // }, [allowToDraw]);
+
   return (
     <div className="two-dimention">
       <Stage
@@ -49,12 +46,7 @@ function TwoDimensionMainWindow({ allowToDraw, setAllowToDraw }) {
           position={position}
         />
         {allowToDraw ? (
-          <DrawRoom
-            isClose={isClose}
-            setIsClose={setIsClose}
-            stage={stageRef}
-            setAllowToDraw={setAllowToDraw}
-          />
+          <DrawRoom stage={stageRef} setAllowToDraw={setAllowToDraw} />
         ) : (
           ""
         )}

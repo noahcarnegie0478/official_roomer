@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Layer, Rect, Text, Line, Circle } from "react-konva";
 
-function DrawRoom({ stage, isClose, setIsClose, setAllowToDraw }) {
+function DrawRoom({ stage, setAllowToDraw }) {
   const [isDrawing, setIsDrawing] = useState(false);
   const [points, setPoints] = useState([]);
   const [previewPoint, setPreviewPoints] = useState(null);
   const [circle, setCircle] = useState([]);
   const [startPoint, setStartPoint] = useState(null);
+  const [isClose, setIsClose] = useState(false);
 
   const handleMouseDown = () => {
     if (isClose) {
@@ -106,7 +107,7 @@ function DrawRoom({ stage, isClose, setIsClose, setAllowToDraw }) {
         points={isDrawing ? previewPoint : points}
         stroke="black"
         strokeWidth={6}
-        lineCap="round"
+        // lineCap="round"
         lineJoin="round"
         closed={isClose}
         listening={false}
